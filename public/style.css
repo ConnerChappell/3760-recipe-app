@@ -1,3 +1,87 @@
+/* base styles */
 * {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: 'Nunito Sans', sans-serif !important;
+    margin: 0;
+    padding: 0;
 }
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+}
+body {
+    font-weight: 400;
+    background-image: linear-gradient(to right bottom, #fbdb89, #ffc67f, #ffb17c, #fc9c7d, #f48982);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 2 * 4vw);
+}
+
+/* header/nav styles */
+.header {
+    grid-area: head;
+}
+.navbar {
+    border-bottom: 1px solid #000;
+}
+.navbar form {
+    width: 415px;
+}
+.navbar-nav {
+    margin-right: 0 !important;
+}
+
+/* app container styles */
+.container {
+    max-width: 1200px;
+    min-height: 117rem;
+    margin: 2rem auto 4rem auto;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 9px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    display: grid;
+    grid-template-rows: 56px minmax(100rem, auto);
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas:
+        'head head'
+        'list recipe';
+}
+
+/* search results styles */
+.search-results {
+    display: flex;
+    flex-direction: column;
+}
+.results {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+/* recipe styles */
+.recipe {
+    background-color: #f8f9fa;
+}
+.message {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 5rem 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* media queries */
+@media only screen and (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+  }
