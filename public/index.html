@@ -27,32 +27,77 @@
               </nav>
         </header>
 
-        <!-- search results div -->
+        <!-- search results container -->
         <div class="search-results-container">
             <h2>SEARCH</h2>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search for recipes..." aria-label="Search">
-                <button class="btn btn-outline-warning" type="submit">Search</button>
+                <input class="form-control me-2" placeholder="Search for recipes..." aria-label="Search">
+                <button class="btn btn-outline-warning search-btn">Search</button>
             </form>  
 
-            <div class="message">
-                <p>Start by searching for a recipe or an ingredient. Have fun!</p>
+            <div class="search-results-list">
+                Start by searching for a recipe or an ingredient. Have fun!
             </div>
-
-            <ul class="search-results">
-
-            </ul>
         </div>
 
-        <!-- recipe div -->
+        <!-- favorites container -->
         <div class="favorites-container">
             <h2>FAVORITES</h2>
-            <ul class="favorites">
+            <div class="favorites-list">
 
-            </ul>
+            </div>
         </div>
 
     </div>
+
+
+
+
+    <!-- recipe card for js -->
+    <!-- <div class="card" id="${recipe.id}">
+        <img src="${recipe.image}" class="card-img-top" alt="Recipe thumbnail">
+        <div class="card-body">
+            <h4 class="card-title">${recipe.meal}</h4>
+            <div class="instructions-container">
+                <h5>Cooking Instructions:</h5>
+                <p class="instructions-text">${recipe.instructions}</p>
+            </div>
+
+            <div class="ingredients-container">
+                <h5>Ingredients:</h5>
+                <ul class="ingredients-list">
+                    <li>${recipe.measure1} ${recipe.ingredient1}</li>
+                    <li>${recipe.measure2} ${recipe.ingredient2}</li>
+                    <li>${recipe.measure3} ${recipe.ingredient3}</li>
+                    <li>${recipe.measure4} ${recipe.ingredient4}</li>
+                    <li>${recipe.measure5} ${recipe.ingredient5}</li>
+                    <li>${recipe.measure6} ${recipe.ingredient6}</li>
+                    <li>${recipe.measure7} ${recipe.ingredient7}</li>
+                    <li>${recipe.measure8} ${recipe.ingredient8}</li>
+                    <li>${recipe.measure9} ${recipe.ingredient9}</li>
+                    <li>${recipe.measure10} ${recipe.ingredient10}</li>
+                    <li>${recipe.measure11} ${recipe.ingredient11}</li>
+                    <li>${recipe.measure12} ${recipe.ingredient12}</li>
+                    <li>${recipe.measure13} ${recipe.ingredient13}</li>
+                    <li>${recipe.measure14} ${recipe.ingredient14}</li>
+                    <li>${recipe.measure15} ${recipe.ingredient15}</li>
+                    <li>${recipe.measure16} ${recipe.ingredient16}</li>
+                    <li>${recipe.measure17} ${recipe.ingredient17}</li>
+                    <li>${recipe.measure18} ${recipe.ingredient18}</li>
+                    <li>${recipe.measure19} ${recipe.ingredient19}</li>
+                    <li>${recipe.measure20} ${recipe.ingredient20}</li>
+                </ul>
+            </div>
+
+            <div class="youtube-tutorial-container">
+                <a href="${recipe.youtube}" target="_blank" class="card-link">Watch Cooking Tutorial</a>
+            </div>
+
+            <div class="card-buttons">
+                <button class="btn btn-warning">Favorite</button>
+            </div>
+        </div>
+    </div> -->
 
     
     <!-- Bootstap JS Bundle -->

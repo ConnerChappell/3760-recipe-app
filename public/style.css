@@ -59,19 +59,13 @@ h2 {
     align-items: center;
 }
 .search-results-container form {
-    width: 50%;
+    width: 60%;
 }
-.message {
-    max-width: 40rem;
-    margin: 0 auto;
-    padding: 2rem 4rem;
-    display: flex;
-    justify-content: center;
+.search-results-list {
+    margin: 2rem 1rem;
 }
-.search-results {
-    list-style: none;
-    margin-bottom: 1rem;
-}
+/* card styles */
+
 
 /* favorites styles */
 .favorites-container {
