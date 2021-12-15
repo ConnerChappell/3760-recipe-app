@@ -65,7 +65,38 @@ h2 {
     margin: 2rem 1rem;
 }
 /* card styles */
-
+.card {
+    margin: .5rem 1rem 2.5rem 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.card img {
+    max-height: 200px;
+    object-fit: cover;
+}
+.card-title {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #000;
+}
+.instructions-container h5 {
+    font-weight: 600;
+}
+.ingredients-container h5 {
+    font-weight: 600;
+}
+.ingredients-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ingredients-list p {
+    margin: .5rem 1.45rem .5rem 0;
+}
+.youtube-tutorial-container {
+    margin: 1rem 0;
+}
+.card-buttons {
+    margin: 1rem 0 .5rem 0;
+}
 
 /* favorites styles */
 .favorites-container {
