@@ -1,6 +1,7 @@
 const searchInput = document.querySelector('input')
 const searchResults = document.querySelector('.search-results-list')
 const searchBtn = document.querySelector('.search-btn')
+const favoriteResults = document.querySelector('.favorites-list')
 
 let recipeList = []
 
@@ -17,6 +18,9 @@ searchInput.addEventListener("keydown", (event) => {
         fetchRecipe()
     }
 })
+
+// add to favorites event listener
+
 
 // function for fetching recipes
 function fetchRecipe() {
@@ -130,10 +134,12 @@ function displayRecipes() {
                 </div>
 
                 <div class="card-buttons">
-                    <button class="btn btn-warning btn-lg">Favorite</button>
+                    <button class="btn btn-warning btn-lg" id="favorite-btn">Favorite</button>
                 </div>
             </div>
         `
         searchResults.appendChild(card)
     })
 }
+
+// function for displaying favorite recipes
