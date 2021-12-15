@@ -27,13 +27,31 @@ document.addEventListener("click", (event) => {
     if (event.target.id === "favorite-btn") {
         if (!recipeSelected.favorite) {
             recipeSelected.favorite = true
-            alert(`${recipeSelected.meal} was added to favorites`)
+            console.log(`${recipeSelected.meal} was added to favorites`)
         } else if (recipeSelected.favorite) recipeSelected.favorite = false
 
         displayFavoriteRecipes()
 
         // fetch PUT stuff will go below
 
+    }
+})
+
+// delete/update favorites event listener
+document.addEventListener("click", (event) => {
+    let recipeID = event.target.parentElement.parentElement.parentElement.id
+    let recipeDelete = event.target.parentElement.parentElement.parentElement
+
+    let recipeSelected = recipeList.find((recipe) => Number(recipe.id) === Number(recipeID))
+
+    if (event.target.id === "delete-btn") {
+        recipeSelected.favorite = false
+        console.log(`${recipeSelected.meal} was removed from favorites`)
+        recipeDelete.remove()
+
+        displayFavoriteRecipes()
+
+        // fetch put stuff below here
     }
 })
 
