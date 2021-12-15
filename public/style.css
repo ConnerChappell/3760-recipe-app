@@ -101,7 +101,9 @@ h2 {
 /* favorites styles */
 .favorites-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
     background-color: #f8f9fa;
 }
 

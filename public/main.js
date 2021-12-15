@@ -20,7 +20,22 @@ searchInput.addEventListener("keydown", (event) => {
 })
 
 // add to favorites event listener
+document.addEventListener("click", (event) => {
+    let recipeID = event.target.parentElement.parentElement.parentElement.id
+    let recipeSelected = recipeList.find((recipe) => Number(recipe.id) === Number(recipeID))
 
+    if (event.target.id === "favorite-btn") {
+        if (!recipeSelected.favorite) {
+            recipeSelected.favorite = true
+            alert(`${recipeSelected.meal} was added to favorites`)
+        } else if (recipeSelected.favorite) recipeSelected.favorite = false
+
+        displayFavoriteRecipes()
+
+        // fetch PUT stuff will go below
+
+    }
+})
 
 // function for fetching recipes
 function fetchRecipe() {
@@ -90,56 +105,109 @@ function fetchRecipe() {
 // function for displaying recipes
 function displayRecipes() {
     recipeList.forEach((recipe) => {
-        let card = document.createElement("div")
-        card.classList.add("card")
-        card.setAttribute("id", "${recipe.id}")
-
-        card.innerHTML= `
-            <img src="${recipe.image}" class="card-img-top" alt="Recipe thumbnail">
-            <div class="card-body">
-                <h4 class="card-title">${recipe.meal}</h4>
-                <div class="instructions-container">
-                    <h5>Cooking Instructions:</h5>
-                    <p class="instructions-text">${recipe.instructions}</p>
-                </div>
-
-                <div class="ingredients-container">
-                    <h5>Ingredients:</h5>
-                    <div class="ingredients-list">
-                        <p>${recipe.measure1} ${recipe.ingredient1}</p>
-                        <p>${recipe.measure2} ${recipe.ingredient2}</p>
-                        <p>${recipe.measure3} ${recipe.ingredient3}</p>
-                        <p>${recipe.measure4} ${recipe.ingredient4}</p>
-                        <p>${recipe.measure5} ${recipe.ingredient5}</p>
-                        <p>${recipe.measure6} ${recipe.ingredient6}</p>
-                        <p>${recipe.measure7} ${recipe.ingredient7}</p>
-                        <p>${recipe.measure8} ${recipe.ingredient8}</p>
-                        <p>${recipe.measure9} ${recipe.ingredient9}</p>
-                        <p>${recipe.measure10} ${recipe.ingredient10}</p>
-                        <p>${recipe.measure11} ${recipe.ingredient11}</p>
-                        <p>${recipe.measure12} ${recipe.ingredient12}</p>
-                        <p>${recipe.measure13} ${recipe.ingredient13}</p>
-                        <p>${recipe.measure14} ${recipe.ingredient14}</p>
-                        <p>${recipe.measure15} ${recipe.ingredient15}</p>
-                        <p>${recipe.measure16} ${recipe.ingredient16}</p>
-                        <p>${recipe.measure17} ${recipe.ingredient17}</p>
-                        <p>${recipe.measure18} ${recipe.ingredient18}</p>
-                        <p>${recipe.measure19} ${recipe.ingredient19}</p>
-                        <p>${recipe.measure20} ${recipe.ingredient20}</p>
+        let recipeCard = `
+            <div class="card" id="${recipe.id}">
+                <img src="${recipe.image}" class="card-img-top" alt="Recipe thumbnail">
+                <div class="card-body">
+                    <h4 class="card-title">${recipe.meal}</h4>
+                    <div class="instructions-container">
+                        <h5>Cooking Instructions:</h5>
+                        <p class="instructions-text">${recipe.instructions}</p>
                     </div>
-                </div>
 
-                <div class="youtube-tutorial-container">
-                    <a href="${recipe.youtube}" target="_blank" class="card-link">Watch Cooking Tutorial</a>
-                </div>
+                    <div class="ingredients-container">
+                        <h5>Ingredients:</h5>
+                        <div class="ingredients-list">
+                            <p>${recipe.measure1} ${recipe.ingredient1}</p>
+                            <p>${recipe.measure2} ${recipe.ingredient2}</p>
+                            <p>${recipe.measure3} ${recipe.ingredient3}</p>
+                            <p>${recipe.measure4} ${recipe.ingredient4}</p>
+                            <p>${recipe.measure5} ${recipe.ingredient5}</p>
+                            <p>${recipe.measure6} ${recipe.ingredient6}</p>
+                            <p>${recipe.measure7} ${recipe.ingredient7}</p>
+                            <p>${recipe.measure8} ${recipe.ingredient8}</p>
+                            <p>${recipe.measure9} ${recipe.ingredient9}</p>
+                            <p>${recipe.measure10} ${recipe.ingredient10}</p>
+                            <p>${recipe.measure11} ${recipe.ingredient11}</p>
+                            <p>${recipe.measure12} ${recipe.ingredient12}</p>
+                            <p>${recipe.measure13} ${recipe.ingredient13}</p>
+                            <p>${recipe.measure14} ${recipe.ingredient14}</p>
+                            <p>${recipe.measure15} ${recipe.ingredient15}</p>
+                            <p>${recipe.measure16} ${recipe.ingredient16}</p>
+                            <p>${recipe.measure17} ${recipe.ingredient17}</p>
+                            <p>${recipe.measure18} ${recipe.ingredient18}</p>
+                            <p>${recipe.measure19} ${recipe.ingredient19}</p>
+                            <p>${recipe.measure20} ${recipe.ingredient20}</p>
+                        </div>
+                    </div>
 
-                <div class="card-buttons">
-                    <button class="btn btn-warning btn-lg" id="favorite-btn">Favorite</button>
+                    <div class="youtube-tutorial-container">
+                        <a href="${recipe.youtube}" target="_blank" class="card-link">Watch Cooking Tutorial</a>
+                    </div>
+
+                    <div class="card-buttons">
+                        <button class="btn btn-warning btn-lg" id="favorite-btn">Favorite</button>
+                    </div>
                 </div>
             </div>
         `
-        searchResults.appendChild(card)
+        searchResults.insertAdjacentHTML("beforeend", recipeCard)
     })
 }
 
 // function for displaying favorite recipes
+function displayFavoriteRecipes() {
+    recipeList.find((recipe) => {
+        if (recipe.favorite) {
+            let recipeCard = `
+            <div class="card" id="${recipe.id}">
+                <img src="${recipe.image}" class="card-img-top" alt="Recipe thumbnail">
+                <div class="card-body">
+                    <h4 class="card-title">${recipe.meal}</h4>
+                    <div class="instructions-container">
+                        <h5>Cooking Instructions:</h5>
+                        <p class="instructions-text">${recipe.instructions}</p>
+                    </div>
+
+                    <div class="ingredients-container">
+                        <h5>Ingredients:</h5>
+                        <div class="ingredients-list">
+                            <p>${recipe.measure1} ${recipe.ingredient1}</p>
+                            <p>${recipe.measure2} ${recipe.ingredient2}</p>
+                            <p>${recipe.measure3} ${recipe.ingredient3}</p>
+                            <p>${recipe.measure4} ${recipe.ingredient4}</p>
+                            <p>${recipe.measure5} ${recipe.ingredient5}</p>
+                            <p>${recipe.measure6} ${recipe.ingredient6}</p>
+                            <p>${recipe.measure7} ${recipe.ingredient7}</p>
+                            <p>${recipe.measure8} ${recipe.ingredient8}</p>
+                            <p>${recipe.measure9} ${recipe.ingredient9}</p>
+                            <p>${recipe.measure10} ${recipe.ingredient10}</p>
+                            <p>${recipe.measure11} ${recipe.ingredient11}</p>
+                            <p>${recipe.measure12} ${recipe.ingredient12}</p>
+                            <p>${recipe.measure13} ${recipe.ingredient13}</p>
+                            <p>${recipe.measure14} ${recipe.ingredient14}</p>
+                            <p>${recipe.measure15} ${recipe.ingredient15}</p>
+                            <p>${recipe.measure16} ${recipe.ingredient16}</p>
+                            <p>${recipe.measure17} ${recipe.ingredient17}</p>
+                            <p>${recipe.measure18} ${recipe.ingredient18}</p>
+                            <p>${recipe.measure19} ${recipe.ingredient19}</p>
+                            <p>${recipe.measure20} ${recipe.ingredient20}</p>
+                        </div>
+                    </div>
+
+                    <div class="youtube-tutorial-container">
+                        <a href="${recipe.youtube}" target="_blank" class="card-link">Watch Cooking Tutorial</a>
+                    </div>
+
+                    <div class="card-buttons">
+                        <button class="btn btn-warning btn-lg" id="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+            `
+            favoriteResults.insertAdjacentHTML("beforeend", recipeCard)
+        }
+    })
+}
+
+// fetch GET stuff will go below
