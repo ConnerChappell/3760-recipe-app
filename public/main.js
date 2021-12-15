@@ -51,7 +51,7 @@ document.addEventListener("click", (event) => {
 
         displayFavoriteRecipes()
 
-        // fetch put stuff below here
+        // fetch delete stuff below here
     }
 })
 
