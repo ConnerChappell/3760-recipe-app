@@ -26,7 +26,7 @@ document.addEventListener('click', (event) => {
     }
 })
 
-// delete/update favorites event listener
+// delete favorites event listener
 document.addEventListener('click', (event) => {
     let recipeID = event.target.parentElement.parentElement.parentElement.id
     let recipeDelete = event.target.parentElement.parentElement.parentElement
@@ -42,7 +42,14 @@ document.addEventListener('click', (event) => {
 
         displayFavoriteRecipes()
 
-        // fetch delete stuff below here
+        // fetch delete favorites
+        fetch(`/recipes/delete/${recipeID}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+                Accept: 'application/json',
+            },
+        }).then((res) => res.json())
     }
 })
 
@@ -297,17 +304,17 @@ function displayFavoriteRecipes() {
 }
 
 // fetch GET for favorites
-fetch("/recipes/favorite/true", {
-    method: "GET",
+fetch('/recipes/favorite/true', {
+    method: 'GET',
     headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Accept: "application/json",
+        'Content-type': 'application/json; charset=UTF-8',
+        Accept: 'application/json',
     },
 })
-.then((res) => res.json())
-.then((data) => {
-    data.forEach((recipe) => {
-        let recipeCard = `
+    .then((res) => res.json())
+    .then((data) => {
+        data.forEach((recipe) => {
+            let recipeCard = `
             <div class="card" id="${recipe.id}">
                 <img src="${recipe.image}" class="card-img-top" alt="Recipe thumbnail">
                 <div class="card-body">
@@ -354,5 +361,36 @@ fetch("/recipes/favorite/true", {
             </div>
             `
             favoriteResults.insertAdjacentHTML('beforeend', recipeCard)
+
+            // delete favorites event listener
+            document.addEventListener('click', (event) => {
+                let recipeID =
+                    event.target.parentElement.parentElement.parentElement.id
+                let recipeDelete =
+                    event.target.parentElement.parentElement.parentElement
+
+                let recipeSelected = recipeList.find(
+                    (recipe) => Number(recipe.id) === Number(recipeID)
+                )
+
+                if (event.target.id === 'delete-btn') {
+                    recipeSelected.favorite = false
+                    console.log(
+                        `${recipeSelected.meal} was removed from favorites`
+                    )
+                    recipeDelete.remove()
+
+                    displayFavoriteRecipes()
+
+                    // fetch delete favorites
+                    fetch(`/recipes/delete/${recipeID}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-type': 'application/json; charset=UTF-8',
+                            Accept: 'application/json',
+                        },
+                    }).then((res) => res.json())
+                }
+            })
+        })
     })
-})
