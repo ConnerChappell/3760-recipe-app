@@ -26,78 +26,6 @@ document.addEventListener('click', (event) => {
     }
 })
 
-// function that adds recipe to favorites
-function addRecipeToFavorites(event) {
-    let recipeID = event.target.parentElement.parentElement.parentElement.id
-    let recipeSelected = recipeList.find(
-        (recipe) => Number(recipe.id) === Number(recipeID)
-    )
-
-    if (!recipeSelected.favorite) {
-        recipeSelected.favorite = true
-        console.log(`${recipeSelected.meal} was added to favorites`)
-    } else if (recipeSelected.favorite) recipeSelected.favorite = false
-
-    displayFavoriteRecipes()
-
-    // fetch POST stuff will go below
-    fetch('/recipes/addToFavorites', {
-        method: 'POST',
-        body: JSON.stringify({
-            meal: `${recipeSelected.meal}`,
-            id: `${recipeSelected.id}`,
-            image: `${recipeSelected.image}`,
-            instructions: `${recipeSelected.instructions}`,
-            ingredient1: `${recipeSelected.strIngredient1}`,
-            ingredient2: `${recipeSelected.strIngredient2}`,
-            ingredient3: `${recipeSelected.strIngredient3}`,
-            ingredient4: `${recipeSelected.strIngredient4}`,
-            ingredient5: `${recipeSelected.strIngredient5}`,
-            ingredient6: `${recipeSelected.strIngredient6}`,
-            ingredient7: `${recipeSelected.strIngredient7}`,
-            ingredient8: `${recipeSelected.strIngredient8}`,
-            ingredient9: `${recipeSelected.strIngredient9}`,
-            ingredient10: `${recipeSelected.strIngredient10}`,
-            ingredient11: `${recipeSelected.strIngredient11}`,
-            ingredient12: `${recipeSelected.strIngredient12}`,
-            ingredient13: `${recipeSelected.strIngredient13}`,
-            ingredient14: `${recipeSelected.strIngredient14}`,
-            ingredient15: `${recipeSelected.strIngredient15}`,
-            ingredient16: `${recipeSelected.strIngredient16}`,
-            ingredient17: `${recipeSelected.strIngredient17}`,
-            ingredient18: `${recipeSelected.strIngredient18}`,
-            ingredient19: `${recipeSelected.strIngredient19}`,
-            ingredient20: `${recipeSelected.strIngredient20}`,
-            measure1: `${recipeSelected.measure1}`,
-            measure2: `${recipeSelected.measure2}`,
-            measure3: `${recipeSelected.measure3}`,
-            measure4: `${recipeSelected.measure4}`,
-            measure5: `${recipeSelected.measure5}`,
-            measure6: `${recipeSelected.measure6}`,
-            measure7: `${recipeSelected.measure7}`,
-            measure8: `${recipeSelected.measure8}`,
-            measure9: `${recipeSelected.measure9}`,
-            measure10: `${recipeSelected.measure10}`,
-            measure11: `${recipeSelected.measure11}`,
-            measure12: `${recipeSelected.measure12}`,
-            measure13: `${recipeSelected.measure13}`,
-            measure14: `${recipeSelected.measure14}`,
-            measure15: `${recipeSelected.measure15}`,
-            measure16: `${recipeSelected.measure16}`,
-            measure17: `${recipeSelected.measure17}`,
-            measure18: `${recipeSelected.measure18}`,
-            measure19: `${recipeSelected.measure19}`,
-            measure20: `${recipeSelected.measure20}`,
-            youtube: `${recipeSelected.youtube}`,
-            favorite: `${recipeSelected.favorite}`,
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-            Accept: 'application/json',
-        },
-    })
-}
-
 // delete/update favorites event listener
 document.addEventListener('click', (event) => {
     let recipeID = event.target.parentElement.parentElement.parentElement.id
@@ -239,6 +167,80 @@ function displayRecipes() {
     })
 }
 
+// function that adds recipe to favorites
+function addRecipeToFavorites(event) {
+    let recipeID = event.target.parentElement.parentElement.parentElement.id
+    let recipeSelected = recipeList.find(
+        (recipe) => Number(recipe.id) === Number(recipeID)
+    )
+
+    if (!recipeSelected.favorite) {
+        recipeSelected.favorite = true
+        console.log(`${recipeSelected.meal} was added to favorites`)
+    } else if (recipeSelected.favorite) {
+        recipeSelected.favorite = false
+    }
+
+    displayFavoriteRecipes()
+
+    // fetch POST for favorites
+    fetch('/recipes/addToFavorites', {
+        method: 'POST',
+        body: JSON.stringify({
+            meal: `${recipeSelected.meal}`,
+            id: `${recipeSelected.id}`,
+            image: `${recipeSelected.image}`,
+            instructions: `${recipeSelected.instructions}`,
+            ingredient1: `${recipeSelected.strIngredient1}`,
+            ingredient2: `${recipeSelected.strIngredient2}`,
+            ingredient3: `${recipeSelected.strIngredient3}`,
+            ingredient4: `${recipeSelected.strIngredient4}`,
+            ingredient5: `${recipeSelected.strIngredient5}`,
+            ingredient6: `${recipeSelected.strIngredient6}`,
+            ingredient7: `${recipeSelected.strIngredient7}`,
+            ingredient8: `${recipeSelected.strIngredient8}`,
+            ingredient9: `${recipeSelected.strIngredient9}`,
+            ingredient10: `${recipeSelected.strIngredient10}`,
+            ingredient11: `${recipeSelected.strIngredient11}`,
+            ingredient12: `${recipeSelected.strIngredient12}`,
+            ingredient13: `${recipeSelected.strIngredient13}`,
+            ingredient14: `${recipeSelected.strIngredient14}`,
+            ingredient15: `${recipeSelected.strIngredient15}`,
+            ingredient16: `${recipeSelected.strIngredient16}`,
+            ingredient17: `${recipeSelected.strIngredient17}`,
+            ingredient18: `${recipeSelected.strIngredient18}`,
+            ingredient19: `${recipeSelected.strIngredient19}`,
+            ingredient20: `${recipeSelected.strIngredient20}`,
+            measure1: `${recipeSelected.measure1}`,
+            measure2: `${recipeSelected.measure2}`,
+            measure3: `${recipeSelected.measure3}`,
+            measure4: `${recipeSelected.measure4}`,
+            measure5: `${recipeSelected.measure5}`,
+            measure6: `${recipeSelected.measure6}`,
+            measure7: `${recipeSelected.measure7}`,
+            measure8: `${recipeSelected.measure8}`,
+            measure9: `${recipeSelected.measure9}`,
+            measure10: `${recipeSelected.measure10}`,
+            measure11: `${recipeSelected.measure11}`,
+            measure12: `${recipeSelected.measure12}`,
+            measure13: `${recipeSelected.measure13}`,
+            measure14: `${recipeSelected.measure14}`,
+            measure15: `${recipeSelected.measure15}`,
+            measure16: `${recipeSelected.measure16}`,
+            measure17: `${recipeSelected.measure17}`,
+            measure18: `${recipeSelected.measure18}`,
+            measure19: `${recipeSelected.measure19}`,
+            measure20: `${recipeSelected.measure20}`,
+            youtube: `${recipeSelected.youtube}`,
+            favorite: `${recipeSelected.favorite}`,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Accept: 'application/json',
+        },
+    })
+}
+
 // function for displaying favorite recipes
 function displayFavoriteRecipes() {
     recipeList.find((recipe) => {
@@ -294,4 +296,63 @@ function displayFavoriteRecipes() {
     })
 }
 
-// fetch GET stuff will go below
+// fetch GET for favorites
+fetch("/recipes/favorite/true", {
+    method: "GET",
+    headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Accept: "application/json",
+    },
+})
+.then((res) => res.json())
+.then((data) => {
+    data.forEach((recipe) => {
+        let recipeCard = `
+            <div class="card" id="${recipe.id}">
+                <img src="${recipe.image}" class="card-img-top" alt="Recipe thumbnail">
+                <div class="card-body">
+                    <h4 class="card-title">${recipe.meal}</h4>
+                    <div class="instructions-container">
+                        <h5>Cooking Instructions:</h5>
+                        <p class="instructions-text">${recipe.instructions}</p>
+                    </div>
+
+                    <div class="ingredients-container">
+                        <h5>Ingredients:</h5>
+                        <div class="ingredients-list">
+                            <p>${recipe.measure1} ${recipe.ingredient1}</p>
+                            <p>${recipe.measure2} ${recipe.ingredient2}</p>
+                            <p>${recipe.measure3} ${recipe.ingredient3}</p>
+                            <p>${recipe.measure4} ${recipe.ingredient4}</p>
+                            <p>${recipe.measure5} ${recipe.ingredient5}</p>
+                            <p>${recipe.measure6} ${recipe.ingredient6}</p>
+                            <p>${recipe.measure7} ${recipe.ingredient7}</p>
+                            <p>${recipe.measure8} ${recipe.ingredient8}</p>
+                            <p>${recipe.measure9} ${recipe.ingredient9}</p>
+                            <p>${recipe.measure10} ${recipe.ingredient10}</p>
+                            <p>${recipe.measure11} ${recipe.ingredient11}</p>
+                            <p>${recipe.measure12} ${recipe.ingredient12}</p>
+                            <p>${recipe.measure13} ${recipe.ingredient13}</p>
+                            <p>${recipe.measure14} ${recipe.ingredient14}</p>
+                            <p>${recipe.measure15} ${recipe.ingredient15}</p>
+                            <p>${recipe.measure16} ${recipe.ingredient16}</p>
+                            <p>${recipe.measure17} ${recipe.ingredient17}</p>
+                            <p>${recipe.measure18} ${recipe.ingredient18}</p>
+                            <p>${recipe.measure19} ${recipe.ingredient19}</p>
+                            <p>${recipe.measure20} ${recipe.ingredient20}</p>
+                        </div>
+                    </div>
+
+                    <div class="youtube-tutorial-container">
+                        <a href="${recipe.youtube}" target="_blank" class="card-link">Watch Cooking Tutorial</a>
+                    </div>
+
+                    <div class="card-buttons">
+                        <button class="btn btn-warning btn-lg" id="delete-btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+            `
+            favoriteResults.insertAdjacentHTML('beforeend', recipeCard)
+    })
+})
