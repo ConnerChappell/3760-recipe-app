@@ -84,7 +84,7 @@ router.post("/addToFavorites", async (req, res) => {
         .catch((error) => console.log(error))
 })
 
-// DELETE
+// DELETE (work in progress)
 router.delete("/delete/:id", async (req, res) => {
     await Recipe.findOneAndDelete({
         id: req.params.id
