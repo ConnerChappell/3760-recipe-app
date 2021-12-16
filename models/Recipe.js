@@ -9,6 +9,10 @@ const Recipe = new Schema({
         type: String,
         required: true,
     },
+    image: {
+        type: String,
+        required: true,
+    },
     instructions: {
         type: String,
         required: true,

@@ -6,45 +6,108 @@ const favoriteResults = document.querySelector('.favorites-list')
 let recipeList = []
 
 // search for recipe event listeners
-searchBtn.addEventListener("click", () => {
+searchBtn.addEventListener('click', () => {
     event.preventDefault()
-    searchResults.innerHTML = ""
+    searchResults.innerHTML = ''
     fetchRecipe()
 })
 
-searchInput.addEventListener("keydown", (event) => {
-    if (event.code === "Enter") {
-        searchResults.innerHTML = ""
+searchInput.addEventListener('keydown', (event) => {
+    if (event.code === 'Enter') {
+        searchResults.innerHTML = ''
         fetchRecipe()
     }
 })
 
 // add to favorites event listener
-document.addEventListener("click", (event) => {
-    let recipeID = event.target.parentElement.parentElement.parentElement.id
-    let recipeSelected = recipeList.find((recipe) => Number(recipe.id) === Number(recipeID))
-
-    if (event.target.id === "favorite-btn") {
-        if (!recipeSelected.favorite) {
-            recipeSelected.favorite = true
-            console.log(`${recipeSelected.meal} was added to favorites`)
-        } else if (recipeSelected.favorite) recipeSelected.favorite = false
-
-        displayFavoriteRecipes()
-
-        // fetch PUT stuff will go below
-
+document.addEventListener('click', (event) => {
+    if (event.target.id === 'favorite-btn') {
+        addRecipeToFavorites(event)
     }
 })
 
+// function that adds recipe to favorites
+function addRecipeToFavorites(event) {
+    let recipeID = event.target.parentElement.parentElement.parentElement.id
+    let recipeSelected = recipeList.find(
+        (recipe) => Number(recipe.id) === Number(recipeID)
+    )
+
+    if (!recipeSelected.favorite) {
+        recipeSelected.favorite = true
+        console.log(`${recipeSelected.meal} was added to favorites`)
+    } else if (recipeSelected.favorite) recipeSelected.favorite = false
+
+    displayFavoriteRecipes()
+
+    // fetch POST stuff will go below
+    fetch('/recipes/addToFavorites', {
+        method: 'POST',
+        body: JSON.stringify({
+            meal: `${recipeSelected.meal}`,
+            id: `${recipeSelected.id}`,
+            image: `${recipeSelected.image}`,
+            instructions: `${recipeSelected.instructions}`,
+            ingredient1: `${recipeSelected.strIngredient1}`,
+            ingredient2: `${recipeSelected.strIngredient2}`,
+            ingredient3: `${recipeSelected.strIngredient3}`,
+            ingredient4: `${recipeSelected.strIngredient4}`,
+            ingredient5: `${recipeSelected.strIngredient5}`,
+            ingredient6: `${recipeSelected.strIngredient6}`,
+            ingredient7: `${recipeSelected.strIngredient7}`,
+            ingredient8: `${recipeSelected.strIngredient8}`,
+            ingredient9: `${recipeSelected.strIngredient9}`,
+            ingredient10: `${recipeSelected.strIngredient10}`,
+            ingredient11: `${recipeSelected.strIngredient11}`,
+            ingredient12: `${recipeSelected.strIngredient12}`,
+            ingredient13: `${recipeSelected.strIngredient13}`,
+            ingredient14: `${recipeSelected.strIngredient14}`,
+            ingredient15: `${recipeSelected.strIngredient15}`,
+            ingredient16: `${recipeSelected.strIngredient16}`,
+            ingredient17: `${recipeSelected.strIngredient17}`,
+            ingredient18: `${recipeSelected.strIngredient18}`,
+            ingredient19: `${recipeSelected.strIngredient19}`,
+            ingredient20: `${recipeSelected.strIngredient20}`,
+            measure1: `${recipeSelected.measure1}`,
+            measure2: `${recipeSelected.measure2}`,
+            measure3: `${recipeSelected.measure3}`,
+            measure4: `${recipeSelected.measure4}`,
+            measure5: `${recipeSelected.measure5}`,
+            measure6: `${recipeSelected.measure6}`,
+            measure7: `${recipeSelected.measure7}`,
+            measure8: `${recipeSelected.measure8}`,
+            measure9: `${recipeSelected.measure9}`,
+            measure10: `${recipeSelected.measure10}`,
+            measure11: `${recipeSelected.measure11}`,
+            measure12: `${recipeSelected.measure12}`,
+            measure13: `${recipeSelected.measure13}`,
+            measure14: `${recipeSelected.measure14}`,
+            measure15: `${recipeSelected.measure15}`,
+            measure16: `${recipeSelected.measure16}`,
+            measure17: `${recipeSelected.measure17}`,
+            measure18: `${recipeSelected.measure18}`,
+            measure19: `${recipeSelected.measure19}`,
+            measure20: `${recipeSelected.measure20}`,
+            youtube: `${recipeSelected.youtube}`,
+            favorite: `${recipeSelected.favorite}`,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+            Accept: 'application/json',
+        },
+    })
+}
+
 // delete/update favorites event listener
-document.addEventListener("click", (event) => {
+document.addEventListener('click', (event) => {
     let recipeID = event.target.parentElement.parentElement.parentElement.id
     let recipeDelete = event.target.parentElement.parentElement.parentElement
 
-    let recipeSelected = recipeList.find((recipe) => Number(recipe.id) === Number(recipeID))
+    let recipeSelected = recipeList.find(
+        (recipe) => Number(recipe.id) === Number(recipeID)
+    )
 
-    if (event.target.id === "delete-btn") {
+    if (event.target.id === 'delete-btn') {
         recipeSelected.favorite = false
         console.log(`${recipeSelected.meal} was removed from favorites`)
         recipeDelete.remove()
@@ -59,7 +122,9 @@ document.addEventListener("click", (event) => {
 function fetchRecipe() {
     let searchInputValue = searchInput.value
 
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputValue}`)
+    fetch(
+        `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchInputValue}`
+    )
         .then((res) => res.json())
         .then((data) => {
             recipeList = data.meals.map((recipe) => {
@@ -116,7 +181,8 @@ function fetchRecipe() {
         })
         .catch((error) => {
             console.error(error)
-            searchResults.innerHTML = "Sorry, could not find a recipe. Try searching again."
+            searchResults.innerHTML =
+                'Sorry, could not find a recipe. Try searching again.'
         })
 }
 
@@ -169,7 +235,7 @@ function displayRecipes() {
                 </div>
             </div>
         `
-        searchResults.insertAdjacentHTML("beforeend", recipeCard)
+        searchResults.insertAdjacentHTML('beforeend', recipeCard)
     })
 }
 
@@ -223,7 +289,7 @@ function displayFavoriteRecipes() {
                 </div>
             </div>
             `
-            favoriteResults.insertAdjacentHTML("beforeend", recipeCard)
+            favoriteResults.insertAdjacentHTML('beforeend', recipeCard)
         }
     })
 }
